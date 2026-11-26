@@ -650,14 +650,14 @@ main, .footer { position: relative; z-index: 1; }
   background: linear-gradient(90deg, transparent, var(--gold));
 }
 .course__name::after { background: linear-gradient(90deg, var(--gold), transparent); }
-.course ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.course li {
+.course__items { display: grid; justify-items: center; gap: 8px; text-align: center; }
+.course__items p {
   font-family: var(--font-serif);
   font-size: clamp(1.12rem, 1.05rem + .3vw, 1.3rem);
   line-height: 1.3;
   text-wrap: balance;
 }
-.course li small {
+.course__items small {
   display: block;
   margin-top: 2px;
   font-style: italic;
