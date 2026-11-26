@@ -8,12 +8,7 @@ Statikus meghívó-weboldal GitHub Pages-re. Nincs build-lépés és nincs futá
 
 ## Testreszabás
 
-A neveket ezekben a sorokban kell átírni (keress rá a `✏️ NEVEK` megjegyzésre):
-
-| Fájl | Mit |
-|---|---|
-| `index.html` | `hero__names` blokk (két `<span class="hero__name">`) |
-| `nyomtathato.html` | `<h1 class="f-names">` |
+A nevek (Sziszi & Gábor) az `index.html`-ben (`hero__names`, title, meta), a `nyomtathato.html`-ben (`f-names`, `b-sign`) és az `eskuvo.ics`-ben szerepelnek.
 
 A QR-kód (`assets/img/qr.svg`) a `https://95gabor.github.io/wedding/` címre mutat. Saját domain esetén újra kell generálni, és át kell írni az `og:url`/`og:image` meta tageket és az `.ics` fájlban az URL-t is.
 

@@ -3,14 +3,14 @@ VERSION:2.0
 PRODID:-//Eskuvo//Meghivo//HU
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Esküvő – 2026. december 5.
+X-WR-CALNAME:Sziszi & Gábor esküvője – 2026. december 5.
 X-WR-TIMEZONE:Europe/Budapest
 BEGIN:VEVENT
 UID:ceremony-20261205@95gabor.github.io
 DTSTAMP:20261126T120000Z
 DTSTART:20261205T140000Z
 DTEND:20261205T150000Z
-SUMMARY:💍 Esküvő – polgári szertartás
+SUMMARY:💍 Sziszi & Gábor esküvője – polgári szertartás
 LOCATION:Polgármesteri Hivatal – házasságkötő terem\, Óváros tér 
  9.\, 8200 Veszprém
 DESCRIPTION:Polgári szertartás a veszprémi Polgármesteri Hivatal házas
@@ -35,7 +35,7 @@ UID:dinner-20261205@95gabor.github.io
 DTSTAMP:20261126T120000Z
 DTSTART:20261205T150000Z
 DTEND:20261205T210000Z
-SUMMARY:🥂 Esküvői vacsora – Betekints Étterem
+SUMMARY:🥂 Sziszi & Gábor esküvője – vacsora (Betekints Étterem)
 LOCATION:Betekints Étterem\, Veszprémvölgyi u. 4.\, 8200 Veszprém
 DESCRIPTION:Ünnepi vacsora 16:00-tól 22:00-ig.\n\nMeghívó: https://95ga
  bor.github.io/wedding/

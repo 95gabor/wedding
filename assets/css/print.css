@@ -195,7 +195,7 @@ h1, p, figure, ol { margin: 0; }
 .f-names {
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: 22pt;
+  font-size: 28pt;
   line-height: 1.05;
   color: var(--ink);
   white-space: nowrap;
@@ -247,6 +247,7 @@ h1, p, figure, ol { margin: 0; }
 .b-qr b { font-weight: 500; color: var(--ink); letter-spacing: .02em; }
 
 .b-sign { font-family: var(--font-script); font-size: 18pt; line-height: 1; color: var(--ink); }
+.b-sign small { display: block; margin-top: 1.2mm; font-family: var(--font-sans); font-size: 6.2pt; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-deep); }
 
 /* view transition a formátumváltáshoz */
 ::view-transition-old(sheets) { animation: vt-out .35s var(--ease) both; }
