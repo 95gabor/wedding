@@ -382,7 +382,8 @@ main, .footer { position: relative; z-index: 1; }
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  padding: .1em .2em .15em;
+  padding: .32em .3em .22em;
+  margin-block: -.22em -.12em;
 }
 .intro-done .hero__name, html:not(.show-intro) .hero__name { animation: rise 1.2s var(--ease) both, shimmer 7s ease-in-out 1.8s infinite; animation-delay: calc(var(--d) * 140ms + 150ms), 2.5s; }
 
@@ -496,7 +497,6 @@ main, .footer { position: relative; z-index: 1; }
 .invite__quote { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; color: var(--ink-soft); }
 
 /* ---------- Visszaszámláló ---------- */
-.countdown-wrap { padding-bottom: 40px; }
 .countdown {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -534,42 +534,6 @@ main, .footer { position: relative; z-index: 1; }
 .countdown__label { font-size: clamp(.6rem, .55rem + .3vw, .75rem); letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); }
 .countdown__done { margin-top: 24px; font-family: var(--font-script); font-size: 2.6rem; color: var(--gold-deep); }
 @keyframes tick { from { opacity: 0; transform: translateY(-45%) rotateX(70deg); } }
-
-/* ---------- Gólya ---------- */
-.stork-lane {
-  position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  height: clamp(130px, 20vw, 210px);
-  margin-top: 36px;
-  overflow-x: clip;
-  overflow-y: visible;
-  pointer-events: none;
-}
-.stork {
-  position: absolute;
-  top: 10%;
-  left: 100%;
-  width: clamp(150px, 22vw, 240px);
-  will-change: transform;
-}
-.stork img { animation: bob 1.6s ease-in-out infinite; filter: drop-shadow(0 18px 16px rgb(90 64 40 / .18)); }
-.stork-lane.fly .stork { animation: fly 11s cubic-bezier(.45, .05, .55, .95) forwards; }
-@keyframes fly {
-  0%   { transform: translate(0, 20px) rotate(-2deg); }
-  50%  { transform: translate(calc(-50vw - 50%), -16px) rotate(2deg); }
-  100% { transform: translate(calc(-100vw - 110%), 10px) rotate(-3deg); }
-}
-/* ahol támogatott: a gólya a görgetéssel együtt repül át */
-@supports (animation-timeline: view()) {
-  .stork-lane .stork,
-  .stork-lane.fly .stork {
-    animation: fly linear both;
-    animation-timeline: view();
-    animation-range: cover 5% cover 95%;
-  }
-}
-@keyframes bob { 50% { transform: translateY(-10px) rotate(-1.5deg); } }
 
 /* ---------- Program / idővonal ---------- */
 .timeline {
@@ -846,7 +810,6 @@ main, .footer { position: relative; z-index: 1; }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  .stork-lane { display: none; }
   .snow { display: none; }
   @view-transition { navigation: none; }
 }

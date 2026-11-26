@@ -30,6 +30,6 @@ python3 -m http.server 8000
 ## Technika
 
 - Képek AVIF + WebP formátumban, `srcset`-tel
-- Cross-document **View Transitions** az oldalak között, **scroll-driven animációk** (gólya, idővonal), JS-tartalékkal ott, ahol a böngésző nem támogatja
+- Cross-document **View Transitions** az oldalak között, **scroll-driven animáció** (idővonal), JS-tartalékkal ott, ahol a böngésző nem támogatja
 - `prefers-reduced-motion` esetén az animációk kikapcsolnak
 - Betűk: Cormorant Garamond, Great Vibes, Jost (Google Fonts, `latin-ext`, tehát van ő/ű)

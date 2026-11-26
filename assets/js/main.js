@@ -131,21 +131,6 @@
     sections.forEach((s) => io.observe(s));
   }
 
-  /* ---------------- Gólya ---------------- */
-  function setupStork() {
-    const lane = $("#stork-lane");
-    if (!lane || reducedMotion) return;
-    if (CSS.supports("animation-timeline: view()")) return; // CSS görgetés-vezérelt animáció intézi
-    const stork = $(".stork", lane);
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !lane.classList.contains("fly")) lane.classList.add("fly");
-    }, { threshold: 0.6 });
-    io.observe(lane);
-    stork.addEventListener("animationend", (e) => {
-      if (e.animationName === "fly") setTimeout(() => lane.classList.remove("fly"), 6000);
-    });
-  }
-
   /* ---------------- 3D döntés a kártyákon ---------------- */
   function setupTilt() {
     if (!finePointer || reducedMotion) return;
@@ -267,7 +252,6 @@
   setupCountdown();
   setupReveal();
   setupTopbar();
-  setupStork();
   setupTilt();
   setupCopy();
   setupSnow();
