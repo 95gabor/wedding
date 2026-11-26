@@ -802,8 +802,10 @@ main, .footer { position: relative; z-index: 1; }
   background: var(--paper-2);
   box-shadow: var(--shadow-lg), 0 0 0 10px var(--paper-2), 0 0 0 11px var(--line);
 }
-.closing__art img { mix-blend-mode: multiply; transition: scale 1.4s var(--ease); }
-.closing__art:hover img { scale: 1.04; }
+/* felül hely a fejnek, a nagyítás a lábaktól indul, így a fej nem csúszik ki az ívből */
+.closing__art picture { display: block; padding: 9% 5% 0; }
+.closing__art img { mix-blend-mode: multiply; transform-origin: 50% 92%; transition: scale 1.4s var(--ease); }
+.closing__art:hover img, .closing__art:active img { scale: 1.05; }
 .closing__text { display: grid; justify-items: center; gap: 18px; }
 .closing__title { font-size: clamp(3.4rem, 2.4rem + 4vw, 5.6rem); font-weight: 400; color: var(--gold-deep); line-height: 1; }
 .closing__text p { font-family: var(--font-serif); font-size: 1.35rem; font-style: italic; color: var(--ink-soft); }
