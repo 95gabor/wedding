@@ -1,0 +1,46 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Eskuvo//Meghivo//HU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Esküvő – 2026. december 5.
+X-WR-TIMEZONE:Europe/Budapest
+BEGIN:VEVENT
+UID:ceremony-20261205@95gabor.github.io
+DTSTAMP:20261126T120000Z
+DTSTART:20261205T140000Z
+DTEND:20261205T150000Z
+SUMMARY:💍 Esküvő – polgári szertartás
+LOCATION:Polgármesteri Hivatal – házasságkötő terem\, Óváros tér 
+ 9.\, 8200 Veszprém
+DESCRIPTION:Polgári szertartás a veszprémi Polgármesteri Hivatal házas
+ ságkötő termében.\nUtána ünnepi vacsora a Betekints Étteremben (16:
+ 00–22:00).\n\nMeghívó: https://95gabor.github.io/wedding/
+URL:https://95gabor.github.io/wedding/
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Holnap esküvő! 💍
+TRIGGER:-P1D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hamarosan kezdődik a szertartás
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-20261205@95gabor.github.io
+DTSTAMP:20261126T120000Z
+DTSTART:20261205T150000Z
+DTEND:20261205T210000Z
+SUMMARY:🥂 Esküvői vacsora – Betekints Étterem
+LOCATION:Betekints Étterem\, Veszprémvölgyi u. 4.\, 8200 Veszprém
+DESCRIPTION:Ünnepi vacsora 16:00-tól 22:00-ig.\n\nMeghívó: https://95ga
+ bor.github.io/wedding/
+URL:https://95gabor.github.io/wedding/
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

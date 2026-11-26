@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nyomtatható meghívó · 2026. december 5.</title>
+  <meta name="description" content="Nyomtatható esküvői meghívókártya (A6, vagy 4 db egy A4-es lapon).">
+  <meta name="theme-color" content="#f8f2ea">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style id="page-size">@page { size: 105mm 148mm; margin: 0; }</style>
+  <script src="assets/js/print.js" defer></script>
+</head>
+<body class="format-a6">
+  <header class="toolbar">
+    <a class="toolbar__back" href="./">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      Vissza
+    </a>
+    <div class="toolbar__group" role="radiogroup" aria-label="Nyomtatási formátum">
+      <label class="seg"><input type="radio" name="format" value="a6" checked><span>A6 kártya</span></label>
+      <label class="seg"><input type="radio" name="format" value="a4"><span>A4 · 4 db / lap</span></label>
+    </div>
+    <button class="toolbar__print" type="button" id="print-btn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg>
+      Nyomtatás
+    </button>
+    <p class="toolbar__hint" id="hint">
+      Nyomtatáskor: <b>méretezés 100%</b> (ne „oldalhoz igazítás”), <b>háttérgrafika bekapcsolva</b>, kétoldalas nyomtatásnál <b>hosszú él mentén</b> fordítva.
+    </p>
+  </header>
+
+  <main class="preview" id="preview">
+    <div class="sheets" id="sheets">
+      <!-- ============ ELŐLAP ============ -->
+      <section class="sheet sheet--front" aria-label="Meghívó előlap">
+        <article class="card card--front">
+          <div class="card__frame" aria-hidden="true"></div>
+          <p class="f-kicker">Összeházasodunk</p>
+          <figure class="f-art">
+            <picture>
+              <source type="image/avif" srcset="assets/img/couple-900.avif">
+              <img src="assets/img/couple-900.webp" width="900" height="1415" alt="A pár rajzolt alakja">
+            </picture>
+          </figure>
+          <!-- ✏️ NEVEK -->
+          <h1 class="f-names">Menyasszony <span>&amp;</span> Vőlegény</h1>
+          <div class="f-rule" aria-hidden="true"><span></span><i></i><span></span></div>
+          <p class="f-date">2026. december 5.</p>
+          <p class="f-meta">szombat · 15 óra · Veszprém</p>
+        </article>
+      </section>
+
+      <!-- ============ HÁTLAP ============ -->
+      <section class="sheet sheet--back" aria-label="Meghívó hátlap">
+        <article class="card card--back">
+          <div class="card__frame" aria-hidden="true"></div>
+          <p class="b-title">Meghívó</p>
+          <p class="b-lead">Szeretettel meghívunk Téged és kedves családodat életünk legszebb napjára, házasságkötésünkre.</p>
+
+          <ol class="b-program">
+            <li>
+              <span class="b-time">15:00</span>
+              <div>
+                <strong>Polgári szertartás</strong>
+                <span>Polgármesteri Hivatal – házasságkötő terem</span>
+                <span>Veszprém, Óváros tér 9.</span>
+              </div>
+            </li>
+            <li>
+              <span class="b-time">16:00<small>–22:00</small></span>
+              <div>
+                <strong>Ünnepi vacsora</strong>
+                <span>Betekints Étterem</span>
+                <span>Veszprém, Veszprémvölgyi u. 4.</span>
+              </div>
+            </li>
+          </ol>
+
+          <div class="b-qr">
+            <img src="assets/img/qr.svg" width="29" height="29" alt="QR-kód a meghívó weboldalához">
+            <p>Térkép, naptár és minden részlet:<br><b>95gabor.github.io/wedding</b></p>
+          </div>
+
+          <p class="b-sign">Várunk szeretettel!</p>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
