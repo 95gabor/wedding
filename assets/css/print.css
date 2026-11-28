@@ -102,6 +102,27 @@ h1, p, figure, ol { margin: 0; }
 }
 .toolbar__hint b { font-weight: 500; color: var(--ink); }
 
+.lang-switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgb(255 250 243 / .8);
+}
+.lang-switch button {
+  border: 0;
+  padding: .5em .75em;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: 500 .7rem/1 var(--font-sans);
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: background-color .35s var(--ease), color .35s;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.i18n-pending body { visibility: hidden; }
+
 /* ---------------- Előnézet ---------------- */
 .preview { padding: 32px 16px 64px; overflow: hidden; }
 .sheets {

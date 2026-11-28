@@ -166,7 +166,7 @@
       btn.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(btn.dataset.copy);
-          toast("Cím a vágólapon ✓");
+          toast(window.i18n?.t("toast.copied") ?? "Cím a vágólapon ✓");
         } catch {
           toast(btn.dataset.copy);
         }

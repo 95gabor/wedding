@@ -62,6 +62,11 @@
     })
   );
   document.getElementById("print-btn").addEventListener("click", doPrint);
+  // nyelvváltáskor az A4-es másolatokat újra kell gyártani a lefordított mintakártyából
+  document.addEventListener("langchange", () => {
+    const current = document.querySelector('input[name="format"]:checked')?.value || "a6";
+    setFormat(current);
+  });
   addEventListener("resize", fit, { passive: true });
   addEventListener("beforeprint", () => { sheets.style.zoom = ""; });
   addEventListener("afterprint", fit);

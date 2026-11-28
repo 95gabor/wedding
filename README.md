@@ -12,6 +12,14 @@ A nevek (Sziszi & Gábor) az `index.html`-ben (`hero__names`, title, meta), a `n
 
 A QR-kód (`assets/img/qr.svg`) a `https://95gabor.github.io/wedding/` címre mutat. Saját domain esetén újra kell generálni, és át kell írni az `og:url`/`og:image` meta tageket és az `.ics` fájlban az URL-t is.
 
+## Nyelvek (magyar / angol)
+
+- A nyelv sorrendben: `?lang=hu|en` az URL-ben → a látogató korábbi választása → a böngésző nyelve (magyar böngészőnél magyar, minden másnál angol).
+- A felső sávban HU / EN váltó van, a választást az oldal megjegyzi (a nyomtatható oldalon is).
+- A magyar szöveg maga a HTML; az angol fordítás az `assets/js/i18n.js` fájlban van (`data-i18n` kulcsok szerint).
+- Angol naptárfájl: `eskuvo-en.ics`; a Google Naptár linkeknek is van angol változata.
+- Közvetlen angol link: `https://95gabor.github.io/wedding/?lang=en`
+
 ## Közzététel (GitHub Pages)
 
 1. Merge-öld a `main` ágba.

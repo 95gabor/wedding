@@ -1,0 +1,46 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Eskuvo//Meghivo//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sziszi & Gábor's wedding – 5 December 2026
+X-WR-TIMEZONE:Europe/Budapest
+BEGIN:VEVENT
+UID:ceremony-20261205@95gabor.github.io
+DTSTAMP:20261128T120000Z
+DTSTART:20261205T140000Z
+DTEND:20261205T150000Z
+SUMMARY:💍 Sziszi & Gábor's wedding – civil ceremony
+LOCATION:Veszprém City Hall (Polgármesteri Hivatal) – Wedding Hall\, Ó
+ város tér 9.\, 8200 Veszprém
+DESCRIPTION:Civil ceremony at Veszprém City Hall.\nFollowed by dinner at B
+ etekints Restaurant (4 pm – 10 pm).\n\nInvitation: https://95gabor.githu
+ b.io/wedding/?lang=en
+URL:https://95gabor.github.io/wedding/?lang=en
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Wedding tomorrow! 💍
+TRIGGER:-P1D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:The ceremony starts soon
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-20261205@95gabor.github.io
+DTSTAMP:20261128T120000Z
+DTSTART:20261205T150000Z
+DTEND:20261205T210000Z
+SUMMARY:🥂 Sziszi & Gábor's wedding – dinner (Betekints Restaurant)
+LOCATION:Betekints Restaurant\, Veszprémvölgyi u. 4.\, 8200 Veszprém
+DESCRIPTION:Wedding dinner from 4 pm to 10 pm.\n\nInvitation: https://95gab
+ or.github.io/wedding/?lang=en
+URL:https://95gabor.github.io/wedding/?lang=en
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

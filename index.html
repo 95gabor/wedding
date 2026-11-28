@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Sziszi &amp; Gábor · Esküvő · 2026. december 5.</title>
-  <meta name="description" content="Sziszi és Gábor összeházasodnak! 2026. december 5., 15:00 · Veszprém, Polgármesteri Hivatal – utána vacsora a Betekints Étteremben.">
+  <title data-i18n="meta.title">Sziszi &amp; Gábor · Esküvő · 2026. december 5.</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Sziszi és Gábor összeházasodnak! 2026. december 5., 15:00 · Veszprém, Polgármesteri Hivatal – utána vacsora a Betekints Étteremben.">
   <meta name="theme-color" content="#f8f2ea">
   <meta name="color-scheme" content="light">
 
   <!-- Link-előnézet (Messenger, WhatsApp, Viber…) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="hu_HU">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:title" content="Sziszi &amp; Gábor · Összeházasodunk! · 2026. december 5.">
   <meta property="og:description" content="Szeretettel meghívunk esküvőnkre! 15:00 polgári szertartás Veszprémben, 16:00-tól vacsora a Betekints Étteremben.">
   <meta property="og:url" content="https://95gabor.github.io/wedding/">
@@ -40,46 +41,66 @@
       const skip = seen || location.hash || new URLSearchParams(location.search).has("nointro") ||
         matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!skip) d.classList.add("show-intro");
+      /* nyelv: ?lang= → mentett választás → böngésző nyelve (magyar, különben angol) */
+      let lang = new URLSearchParams(location.search).get("lang");
+      if (lang !== "hu" && lang !== "en") {
+        try { lang = localStorage.getItem("lang"); } catch {}
+      }
+      if (lang !== "hu" && lang !== "en") {
+        const prefs = navigator.languages?.length ? navigator.languages : [navigator.language || "hu"];
+        const hit = prefs.map((l) => l.toLowerCase().slice(0, 2)).find((l) => l === "hu" || l === "en");
+        lang = hit || "en";
+      }
+      d.lang = lang;
+      if (lang !== "hu") {
+        d.classList.add("i18n-pending");
+        setTimeout(() => d.classList.remove("i18n-pending"), 2000);
+      }
     })();
   </script>
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Ugrás a tartalomra</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Ugrás a tartalomra</a>
 
   <!-- ============ Boríték-intró ============ -->
   <div class="envelope-intro" id="intro" aria-hidden="true">
     <div class="envelope">
       <div class="envelope__back"></div>
       <div class="envelope__letter">
-        <span class="envelope__letter-kicker">Meghívó</span>
+        <span class="envelope__letter-kicker" data-i18n="envelope.kicker">Meghívó</span>
         <span class="envelope__letter-date">2026 · 12 · 05</span>
       </div>
       <div class="envelope__front"></div>
       <div class="envelope__flap"></div>
       <button class="envelope__seal" type="button" id="open-envelope" tabindex="-1">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4h2c.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>
-        <span class="sr-only">Meghívó megnyitása</span>
+        <span class="sr-only" data-i18n="envelope.open">Meghívó megnyitása</span>
       </button>
     </div>
-    <p class="envelope-intro__hint">Koppints a pecsétre</p>
-    <button class="envelope-intro__skip" type="button" id="skip-intro" tabindex="-1">Kihagyás</button>
+    <p class="envelope-intro__hint" data-i18n="envelope.hint">Koppints a pecsétre</p>
+    <button class="envelope-intro__skip" type="button" id="skip-intro" tabindex="-1" data-i18n="envelope.skip">Kihagyás</button>
   </div>
 
   <canvas class="snow" id="snow" aria-hidden="true"></canvas>
 
   <header class="topbar" id="topbar">
-    <a class="topbar__brand" href="#top" aria-label="Vissza a tetejére">
+    <a class="topbar__brand" href="#top" aria-label="Vissza a tetejére" data-i18n-attr="aria-label:nav.top">
       <svg viewBox="0 0 48 32" aria-hidden="true"><circle cx="18" cy="16" r="10"/><circle cx="30" cy="16" r="10"/></svg>
     </a>
-    <nav class="topbar__nav" aria-label="Fő navigáció">
-      <a href="#program">Program</a>
-      <a href="#menu">Menü</a>
-      <a href="#helyszinek">Helyszínek</a>
-      <a href="#naptar">Naptár</a>
-      <a href="nyomtathato.html" class="topbar__print">Nyomtatható</a>
+    <nav class="topbar__nav" aria-label="Fő navigáció" data-i18n-attr="aria-label:nav.label">
+      <a href="#program" data-i18n="nav.program">Program</a>
+      <a href="#menu" data-i18n="nav.menu">Menü</a>
+      <a href="#helyszinek" data-i18n="nav.venues">Helyszínek</a>
+      <a href="#naptar" data-i18n="nav.calendar">Naptár</a>
+      <a href="nyomtathato.html" class="topbar__print" data-i18n="nav.print">Nyomtatható</a>
     </nav>
+    <div class="lang-switch" role="group" aria-label="Nyelv / Language">
+      <button type="button" data-lang="hu" lang="hu" title="Magyar">HU</button>
+      <button type="button" data-lang="en" lang="en" title="English">EN</button>
+    </div>
   </header>
 
   <main id="main">
@@ -87,33 +108,33 @@
     <section class="hero" id="top">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__text">
-        <p class="eyebrow hero__in" style="--d:0">Összeházasodunk!</p>
+        <p class="eyebrow hero__in" style="--d:0" data-i18n="hero.kicker">Összeházasodunk!</p>
         <h1 class="hero__names">
           <span class="hero__name hero__in" style="--d:1">Sziszi</span>
           <span class="hero__amp hero__in" style="--d:2">&amp;</span>
           <span class="hero__name hero__in" style="--d:3">Gábor</span>
         </h1>
         <div class="hero__date hero__in" style="--d:4">
-          <span>szombat</span>
-          <strong>2026. december 5.</strong>
+          <span data-i18n="date.weekday">szombat</span>
+          <strong data-i18n="date.long">2026. december 5.</strong>
           <span>15:00 · Veszprém</span>
         </div>
         <div class="hero__actions hero__in" style="--d:5">
           <a class="btn btn--gold" href="#naptar">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-            Naptárba
+            <span data-i18n="hero.calendar">Naptárba</span>
           </a>
-          <a class="btn btn--ghost" href="#program">Részletek</a>
+          <a class="btn btn--ghost" href="#program" data-i18n="hero.details">Részletek</a>
         </div>
       </div>
       <figure class="hero__art hero__in" style="--d:2">
         <div class="hero__halo" aria-hidden="true"></div>
         <picture>
           <source type="image/avif" srcset="assets/img/couple-480.avif 480w, assets/img/couple-900.avif 900w" sizes="(max-width: 800px) 70vw, 420px">
-          <img src="assets/img/couple-480.webp" srcset="assets/img/couple-480.webp 480w, assets/img/couple-900.webp 900w" sizes="(max-width: 800px) 70vw, 420px" width="900" height="1415" alt="Sziszi és Gábor rajzolt alakja, egymást átölelve" fetchpriority="high">
+          <img src="assets/img/couple-480.webp" srcset="assets/img/couple-480.webp 480w, assets/img/couple-900.webp 900w" sizes="(max-width: 800px) 70vw, 420px" width="900" height="1415" alt="Sziszi és Gábor rajzolt alakja, egymást átölelve" data-i18n-attr="alt:hero.alt" fetchpriority="high">
         </picture>
       </figure>
-      <a class="hero__scroll" href="#meghivo" aria-label="Görgess lejjebb"><span></span></a>
+      <a class="hero__scroll" href="#meghivo" aria-label="Görgess lejjebb" data-i18n-attr="aria-label:hero.scroll"><span></span></a>
     </section>
 
     <!-- ============ Meghívó szöveg ============ -->
@@ -121,29 +142,29 @@
       <div class="ornament reveal" aria-hidden="true">
         <svg viewBox="0 0 220 24"><path d="M2 12h86M132 12h86"/><path d="M110 3c-6 0-10 4-10 9s4 9 10 9 10-4 10-9-4-9-10-9zm0 4.5 2 4.5-2 4.5-2-4.5z"/></svg>
       </div>
-      <p class="invite__lead reveal">
+      <p class="invite__lead reveal" data-i18n-html="invite.lead">
         Szeretettel meghívunk <em>Téged és kedves családodat</em><br>
         életünk legszebb napjára, házasságkötésünkre.
       </p>
-      <p class="invite__quote reveal">Egy közös út kezdetén szeretnénk, ha mellettünk lennétek.</p>
+      <p class="invite__quote reveal" data-i18n="invite.quote">Egy közös út kezdetén szeretnénk, ha mellettünk lennétek.</p>
     </section>
 
     <!-- ============ Visszaszámláló ============ -->
     <section class="section countdown-wrap" aria-labelledby="countdown-title">
-      <h2 class="section__title reveal" id="countdown-title"><span class="script">Már csak</span></h2>
+      <h2 class="section__title reveal" id="countdown-title"><span class="script" data-i18n="countdown.title">Már csak</span></h2>
       <div class="countdown reveal" id="countdown" data-target="2026-12-05T15:00:00+01:00" role="timer" aria-live="off">
-        <div class="countdown__unit"><span class="countdown__num" data-unit="days">--</span><span class="countdown__label">nap</span></div>
-        <div class="countdown__unit"><span class="countdown__num" data-unit="hours">--</span><span class="countdown__label">óra</span></div>
-        <div class="countdown__unit"><span class="countdown__num" data-unit="minutes">--</span><span class="countdown__label">perc</span></div>
-        <div class="countdown__unit"><span class="countdown__num" data-unit="seconds">--</span><span class="countdown__label">másodperc</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-unit="days">--</span><span class="countdown__label" data-i18n="countdown.days">nap</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-unit="hours">--</span><span class="countdown__label" data-i18n="countdown.hours">óra</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-unit="minutes">--</span><span class="countdown__label" data-i18n="countdown.minutes">perc</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-unit="seconds">--</span><span class="countdown__label" data-i18n="countdown.seconds">másodperc</span></div>
       </div>
-      <p class="countdown__done" id="countdown-done" hidden>Ma van a nagy nap! 💍</p>
+      <p class="countdown__done" id="countdown-done" hidden data-i18n="countdown.done">Ma van a nagy nap! 💍</p>
     </section>
 
     <!-- ============ Program ============ -->
     <section class="section program" id="program" aria-labelledby="program-title">
-      <p class="eyebrow reveal">A nagy nap</p>
-      <h2 class="section__title reveal" id="program-title">Program</h2>
+      <p class="eyebrow reveal" data-i18n="program.kicker">A nagy nap</p>
+      <h2 class="section__title reveal" id="program-title" data-i18n="program.title">Program</h2>
 
       <ol class="timeline">
         <li class="timeline__item reveal">
@@ -152,9 +173,9 @@
             <svg viewBox="0 0 24 24"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="m10 5 2-2.5L14 5l-2 1.5z"/></svg>
           </div>
           <div class="timeline__card">
-            <h3>Polgári szertartás</h3>
-            <p>Polgármesteri Hivatal – házasságkötő terem</p>
-            <p class="muted">Érdemes néhány perccel korábban érkezni.</p>
+            <h3 data-i18n="program.ceremony">Polgári szertartás</h3>
+            <p data-i18n="program.ceremonyPlace">Polgármesteri Hivatal – házasságkötő terem</p>
+            <p class="muted" data-i18n="program.ceremonyNote">Érdemes néhány perccel korábban érkezni.</p>
           </div>
         </li>
         <li class="timeline__item reveal">
@@ -163,10 +184,10 @@
             <svg viewBox="0 0 24 24"><path d="M7 3h4l-.5 6a2.5 2.5 0 0 1-3 0zM9 9.5V20M6.5 20h5M17 3v17M15 3v5a2 2 0 0 0 4 0V3"/></svg>
           </div>
           <div class="timeline__card">
-            <h3>Ünnepi vacsora</h3>
-            <p>Betekints Étterem</p>
-            <p class="muted">Vacsora, koccintás, beszélgetés – együtt ünnepelünk.</p>
-            <a class="timeline__link" href="#menu">Nézd meg a menüt <span aria-hidden="true">→</span></a>
+            <h3 data-i18n="program.dinner">Ünnepi vacsora</h3>
+            <p data-i18n="program.dinnerPlace">Betekints Étterem</p>
+            <p class="muted" data-i18n="program.dinnerNote">Vacsora, koccintás, beszélgetés – együtt ünnepelünk.</p>
+            <a class="timeline__link" href="#menu"><span data-i18n="program.menuLink">Nézd meg a menüt</span> <span aria-hidden="true">→</span></a>
           </div>
         </li>
       </ol>
@@ -174,74 +195,74 @@
 
     <!-- ============ Menü ============ -->
     <section class="section menu" id="menu" aria-labelledby="menu-title">
-      <p class="eyebrow reveal">Ünnepi vacsora</p>
-      <h2 class="section__title reveal" id="menu-title">Menü</h2>
+      <p class="eyebrow reveal" data-i18n="menu.kicker">Ünnepi vacsora</p>
+      <h2 class="section__title reveal" id="menu-title" data-i18n="menu.title">Menü</h2>
 
       <div class="menu__card reveal">
         <div class="menu__frame" aria-hidden="true"></div>
         <div class="menu__cols">
           <section class="course">
-            <h3 class="course__name">Előétel</h3>
+            <h3 class="course__name" data-i18n="menu.starter">Előétel</h3>
             <div class="course__items">
-              <p>Antipasti friss bagettel és serrano sonkával</p>
+              <p data-i18n="menu.antipasti">Antipasti friss bagettel és serrano sonkával</p>
             </div>
           </section>
 
           <section class="course">
-            <h3 class="course__name">Leves</h3>
+            <h3 class="course__name" data-i18n="menu.soup">Leves</h3>
             <div class="course__items">
-              <p>Tanyasi tyúkhúsleves</p>
+              <p data-i18n="menu.chickenSoup">Tanyasi tyúkhúsleves</p>
             </div>
           </section>
 
           <section class="course">
-            <h3 class="course__name">Főételek</h3>
+            <h3 class="course__name" data-i18n="menu.mains">Főételek</h3>
             <div class="course__items">
-              <p>Borjú bécsi</p>
-              <p>Kijevi jércemell</p>
-              <p>Cornflakes-bundában sült csirkemell cheddar sajttal és sonkával töltve</p>
-              <p>Szűzérmék szalonnaköntösben <small>tejszínes gombamártással</small></p>
-              <p>Házi grillsajt</p>
-              <p>Fetával töltött, grillezett gombafejek</p>
+              <p data-i18n="menu.schnitzel">Borjú bécsi</p>
+              <p data-i18n="menu.kiev">Kijevi jércemell</p>
+              <p data-i18n="menu.cornflakes">Cornflakes-bundában sült csirkemell cheddar sajttal és sonkával töltve</p>
+              <p data-i18n-html="menu.tenderloin">Szűzérmék szalonnaköntösben <small>tejszínes gombamártással</small></p>
+              <p data-i18n="menu.grillCheese">Házi grillsajt</p>
+              <p data-i18n="menu.mushrooms">Fetával töltött, grillezett gombafejek</p>
             </div>
           </section>
 
           <section class="course">
-            <h3 class="course__name">Köretek</h3>
+            <h3 class="course__name" data-i18n="menu.sides">Köretek</h3>
             <div class="course__items">
-              <p>Pirított burgonya</p>
-              <p>Párolt zöldségek</p>
-              <p>Jázminrizs</p>
-              <p>Bulgursaláta</p>
+              <p data-i18n="menu.potatoes">Pirított burgonya</p>
+              <p data-i18n="menu.vegetables">Párolt zöldségek</p>
+              <p data-i18n="menu.rice">Jázminrizs</p>
+              <p data-i18n="menu.bulgur">Bulgursaláta</p>
             </div>
           </section>
 
           <section class="course">
-            <h3 class="course__name">Savanyúságok</h3>
+            <h3 class="course__name" data-i18n="menu.pickles">Savanyúságok</h3>
             <div class="course__items">
-              <p>Csemegeuborka</p>
-              <p>Tejfölös uborkasaláta</p>
-              <p>Házi vegyes savanyúság</p>
+              <p data-i18n="menu.gherkins">Csemegeuborka</p>
+              <p data-i18n="menu.cucumberSalad">Tejfölös uborkasaláta</p>
+              <p data-i18n="menu.mixedPickles">Házi vegyes savanyúság</p>
             </div>
           </section>
 
           <section class="course">
-            <h3 class="course__name">Desszert</h3>
+            <h3 class="course__name" data-i18n="menu.dessert">Desszert</h3>
             <div class="course__items">
-              <p>Torta</p>
-              <p>Pohárdesszertek</p>
-              <p>Sós ropogtatnivalók</p>
+              <p data-i18n="menu.cake">Torta</p>
+              <p data-i18n="menu.cups">Pohárdesszertek</p>
+              <p data-i18n="menu.snacks">Sós ropogtatnivalók</p>
             </div>
           </section>
         </div>
-        <p class="menu__foot">Jó étvágyat! <span aria-hidden="true">🥂</span></p>
+        <p class="menu__foot"><span data-i18n="menu.enjoy">Jó étvágyat!</span> <span aria-hidden="true">🥂</span></p>
       </div>
     </section>
 
     <!-- ============ Helyszínek ============ -->
     <section class="section venues" id="helyszinek" aria-labelledby="venues-title">
-      <p class="eyebrow reveal">Hol találkozunk?</p>
-      <h2 class="section__title reveal" id="venues-title">Helyszínek</h2>
+      <p class="eyebrow reveal" data-i18n="venues.kicker">Hol találkozunk?</p>
+      <h2 class="section__title reveal" id="venues-title" data-i18n="venues.title">Helyszínek</h2>
 
       <div class="venues__grid">
         <article class="venue reveal tilt">
@@ -249,13 +270,13 @@
             <svg viewBox="0 0 48 48"><path d="M6 42h36M9 42V20M39 42V20M4 20 24 7l20 13zM16 42V26M24 42V26M32 42V26"/><circle cx="24" cy="15" r="2.5"/></svg>
           </div>
           <span class="venue__badge">15:00</span>
-          <h3>Polgármesteri Hivatal</h3>
-          <p class="venue__sub">Házasságkötő terem</p>
+          <h3 data-i18n="venues.cityHall">Polgármesteri Hivatal</h3>
+          <p class="venue__sub" data-i18n="venues.cityHallSub">Házasságkötő terem</p>
           <address>Óváros tér 9.<br>8200 Veszprém</address>
           <div class="venue__actions">
-            <a class="btn btn--small" href="https://www.google.com/maps/search/?api=1&amp;query=Veszpr%C3%A9m%20Polg%C3%A1rmesteri%20Hivatal%2C%20%C3%93v%C3%A1ros%20t%C3%A9r%209" target="_blank" rel="noopener">Térkép</a>
-            <a class="btn btn--small btn--ghost" href="https://maps.apple.com/?q=Polg%C3%A1rmesteri%20Hivatal&amp;address=%C3%93v%C3%A1ros%20t%C3%A9r%209%2C%208200%20Veszpr%C3%A9m" target="_blank" rel="noopener">Apple Térképek</a>
-            <button class="btn btn--small btn--ghost copy" type="button" data-copy="Óváros tér 9., 8200 Veszprém">Cím másolása</button>
+            <a class="btn btn--small" href="https://www.google.com/maps/search/?api=1&amp;query=Veszpr%C3%A9m%20Polg%C3%A1rmesteri%20Hivatal%2C%20%C3%93v%C3%A1ros%20t%C3%A9r%209" target="_blank" rel="noopener" data-i18n="venues.map">Térkép</a>
+            <a class="btn btn--small btn--ghost" href="https://maps.apple.com/?q=Polg%C3%A1rmesteri%20Hivatal&amp;address=%C3%93v%C3%A1ros%20t%C3%A9r%209%2C%208200%20Veszpr%C3%A9m" target="_blank" rel="noopener" data-i18n="venues.appleMaps">Apple Térképek</a>
+            <button class="btn btn--small btn--ghost copy" type="button" data-copy="Óváros tér 9., 8200 Veszprém" data-i18n="venues.copy">Cím másolása</button>
           </div>
         </article>
 
@@ -264,13 +285,13 @@
             <svg viewBox="0 0 48 48"><path d="M17 6h14l-1.5 13a5.6 5.6 0 0 1-11 0zM24 24.5V40M17 41h14"/><path d="M18.4 13h11.2"/><path d="M36 9l2-3M39 14h3.5M10 14H6.5M12 9l-2-3"/></svg>
           </div>
           <span class="venue__badge">16:00–22:00</span>
-          <h3>Betekints Étterem</h3>
-          <p class="venue__sub">Ünnepi vacsora</p>
+          <h3 data-i18n="venues.restaurant">Betekints Étterem</h3>
+          <p class="venue__sub" data-i18n="venues.restaurantSub">Ünnepi vacsora</p>
           <address>Veszprémvölgyi u. 4.<br>8200 Veszprém</address>
           <div class="venue__actions">
-            <a class="btn btn--small" href="https://www.google.com/maps/search/?api=1&amp;query=Betekints%20%C3%89tterem%2C%20Veszpr%C3%A9mv%C3%B6lgyi%20u.%204%2C%20Veszpr%C3%A9m" target="_blank" rel="noopener">Térkép</a>
-            <a class="btn btn--small btn--ghost" href="https://maps.apple.com/?q=Betekints%20%C3%89tterem&amp;address=Veszpr%C3%A9mv%C3%B6lgyi%20u.%204%2C%208200%20Veszpr%C3%A9m" target="_blank" rel="noopener">Apple Térképek</a>
-            <button class="btn btn--small btn--ghost copy" type="button" data-copy="Veszprémvölgyi u. 4., 8200 Veszprém">Cím másolása</button>
+            <a class="btn btn--small" href="https://www.google.com/maps/search/?api=1&amp;query=Betekints%20%C3%89tterem%2C%20Veszpr%C3%A9mv%C3%B6lgyi%20u.%204%2C%20Veszpr%C3%A9m" target="_blank" rel="noopener" data-i18n="venues.map">Térkép</a>
+            <a class="btn btn--small btn--ghost" href="https://maps.apple.com/?q=Betekints%20%C3%89tterem&amp;address=Veszpr%C3%A9mv%C3%B6lgyi%20u.%204%2C%208200%20Veszpr%C3%A9m" target="_blank" rel="noopener" data-i18n="venues.appleMaps">Apple Térképek</a>
+            <button class="btn btn--small btn--ghost copy" type="button" data-copy="Veszprémvölgyi u. 4., 8200 Veszprém" data-i18n="venues.copy">Cím másolása</button>
           </div>
         </article>
       </div>
@@ -282,22 +303,22 @@
         <div class="calendar__date" aria-hidden="true">
           <span class="calendar__month">December</span>
           <span class="calendar__day">5</span>
-          <span class="calendar__weekday">szombat</span>
+          <span class="calendar__weekday" data-i18n="date.weekday">szombat</span>
         </div>
         <div class="calendar__body">
           <p class="eyebrow">Save the date</p>
-          <h2 class="section__title" id="cal-title">Tedd a naptáradba!</h2>
-          <p>Egy kattintás, és nem felejted el – mindkét eseményt (szertartás és vacsora) emlékeztetővel együtt elmentheted.</p>
+          <h2 class="section__title" id="cal-title" data-i18n="calendar.title">Tedd a naptáradba!</h2>
+          <p data-i18n="calendar.text">Egy kattintás, és nem felejted el – mindkét eseményt (szertartás és vacsora) emlékeztetővel együtt elmentheted.</p>
           <div class="calendar__actions">
-            <a class="btn btn--gold" href="eskuvo.ics" download="eskuvo-2026-12-05.ics">
+            <a class="btn btn--gold" href="eskuvo.ics" download="eskuvo-2026-12-05.ics" data-i18n-attr="href:calendar.icsHref;download:calendar.icsName">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
               Apple / Outlook (.ics)
             </a>
-            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sziszi+%26+G%C3%A1bor+esk%C3%BCv%C5%91je+%E2%80%93+polg%C3%A1ri+szertart%C3%A1s&amp;dates=20261205T140000Z%2F20261205T150000Z&amp;location=Polg%C3%A1rmesteri+Hivatal+%E2%80%93+h%C3%A1zass%C3%A1gk%C3%B6t%C5%91+terem%2C+%C3%93v%C3%A1ros+t%C3%A9r+9.%2C+8200+Veszpr%C3%A9m&amp;details=Polg%C3%A1ri+szertart%C3%A1s+a+veszpr%C3%A9mi+Polg%C3%A1rmesteri+Hivatal+h%C3%A1zass%C3%A1gk%C3%B6t%C5%91+term%C3%A9ben.+Ut%C3%A1na+vacsora+a+Betekints+%C3%89tteremben.&amp;ctz=Europe%2FBudapest">
-              Google · szertartás
+            <a class="btn btn--ghost" target="_blank" rel="noopener" data-i18n-attr="href:calendar.googleCeremonyHref" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sziszi+%26+G%C3%A1bor+esk%C3%BCv%C5%91je+%E2%80%93+polg%C3%A1ri+szertart%C3%A1s&amp;dates=20261205T140000Z%2F20261205T150000Z&amp;location=Polg%C3%A1rmesteri+Hivatal+%E2%80%93+h%C3%A1zass%C3%A1gk%C3%B6t%C5%91+terem%2C+%C3%93v%C3%A1ros+t%C3%A9r+9.%2C+8200+Veszpr%C3%A9m&amp;details=Polg%C3%A1ri+szertart%C3%A1s+a+veszpr%C3%A9mi+Polg%C3%A1rmesteri+Hivatal+h%C3%A1zass%C3%A1gk%C3%B6t%C5%91+term%C3%A9ben.+Ut%C3%A1na+vacsora+a+Betekints+%C3%89tteremben.&amp;ctz=Europe%2FBudapest">
+              <span data-i18n="calendar.googleCeremony">Google · szertartás</span>
             </a>
-            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sziszi+%26+G%C3%A1bor+esk%C3%BCv%C5%91je+%E2%80%93+vacsora+%28Betekints+%C3%89tterem%29&amp;dates=20261205T150000Z%2F20261205T210000Z&amp;location=Betekints+%C3%89tterem%2C+Veszpr%C3%A9mv%C3%B6lgyi+u.+4.%2C+8200+Veszpr%C3%A9m&amp;details=%C3%9Cnnepi+vacsora+16%3A00-t%C3%B3l+22%3A00-ig.&amp;ctz=Europe%2FBudapest">
-              Google · vacsora
+            <a class="btn btn--ghost" target="_blank" rel="noopener" data-i18n-attr="href:calendar.googleDinnerHref" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sziszi+%26+G%C3%A1bor+esk%C3%BCv%C5%91je+%E2%80%93+vacsora+%28Betekints+%C3%89tterem%29&amp;dates=20261205T150000Z%2F20261205T210000Z&amp;location=Betekints+%C3%89tterem%2C+Veszpr%C3%A9mv%C3%B6lgyi+u.+4.%2C+8200+Veszpr%C3%A9m&amp;details=%C3%9Cnnepi+vacsora+16%3A00-t%C3%B3l+22%3A00-ig.&amp;ctz=Europe%2FBudapest">
+              <span data-i18n="calendar.googleDinner">Google · vacsora</span>
             </a>
           </div>
         </div>
@@ -309,15 +330,15 @@
       <figure class="closing__art reveal">
         <picture>
           <source type="image/avif" srcset="assets/img/family-600.avif 600w, assets/img/family-1000.avif 1000w" sizes="(max-width: 700px) 86vw, 460px">
-          <img src="assets/img/family-600.webp" srcset="assets/img/family-600.webp 600w, assets/img/family-1000.webp 1000w" sizes="(max-width: 700px) 86vw, 460px" width="1000" height="1000" alt="Sziszi és Gábor a nyuszikkal" loading="lazy">
+          <img src="assets/img/family-600.webp" srcset="assets/img/family-600.webp 600w, assets/img/family-1000.webp 1000w" sizes="(max-width: 700px) 86vw, 460px" width="1000" height="1000" alt="Sziszi és Gábor a nyuszikkal" data-i18n-attr="alt:closing.alt" loading="lazy">
         </picture>
       </figure>
       <div class="closing__text">
-        <h2 class="closing__title reveal" id="closing-title"><span class="script">Várunk szeretettel!</span></h2>
-        <p class="reveal">Az ünnep a Ti jelenlétetekkel lesz teljes.</p>
+        <h2 class="closing__title reveal" id="closing-title"><span class="script" data-i18n="closing.title">Várunk szeretettel!</span></h2>
+        <p class="reveal" data-i18n="closing.text">Az ünnep a Ti jelenlétetekkel lesz teljes.</p>
         <a class="btn btn--ghost reveal" href="nyomtathato.html">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg>
-          Nyomtatható meghívó
+          <span data-i18n="closing.print">Nyomtatható meghívó</span>
         </a>
       </div>
     </section>
@@ -325,7 +346,7 @@
 
   <footer class="footer">
     <svg viewBox="0 0 48 32" aria-hidden="true"><circle cx="18" cy="16" r="10"/><circle cx="30" cy="16" r="10"/></svg>
-    <p>Sziszi &amp; Gábor · 2026. december 5. · Veszprém</p>
+    <p data-i18n="footer">Sziszi &amp; Gábor · 2026. december 5. · Veszprém</p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
